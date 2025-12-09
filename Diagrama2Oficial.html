@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Prototipo - Diagrama 2</title>
+    <style>
+        body { font-family: monospace; background-color: #f4f4f4; padding: 20px; }
+        .consola { background-color: black; color: #00ff00; padding: 20px; border-radius: 5px; width: 80%; margin: 0 auto; min-height: 300px; white-space: pre-wrap; }
+        button { padding: 15px 30px; font-size: 18px; cursor: pointer; display: block; margin: 20px auto; background-color: #007bff; color: white; border: none; border-radius: 5px; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+
+    <!-- BOTÓN PARA INICIAR -->
+    <button onclick="ejecutarDiagrama2()">▶ INICIAR EVALUACIÓN (Diagrama 2)</button>
+    
+    <!-- PANTALLA NEGRA DE RESULTADOS -->
+    <div class="consola" id="pantalla">
+        Sistema de Evaluación de Notas
+        Estado: Esperando inicio...
+        Haga clic en el botón azul de arriba.
+    </div>
+
+    <script>
+        function ejecutarDiagrama2() {
+            var pantalla = document.getElementById("pantalla");
+            pantalla.innerText = ">>> INICIO DEL PROGRAMA <<<\n";
+            pantalla.innerText += "Inicializando contadores...\n";
+
+            // 1. INICIALIZAR VARIABLES (Diagrama 2)
+            var contador_aprobados = 0;
+            var contador_reprobados = 0;
+            var continuar = 'S'; // Variable de control
+
+            // 2. BUCLE WHILE (Diagrama 2)
+            // Lógica: Mientras continuar sea 'S' o 's'
+            while (continuar === 'S' || continuar === 's') {
+                
+                // === EJECUCIÓN DIAGRAMA 1 (DENTRO DEL BUCLE) ===
+                
+                // A. INGRESAR NOTA
+                var entradaNota = prompt("Ingrese la NOTA del estudiante (ej: 7.0):");
+                
+                // Validación: Si el usuario cancela, rompemos el bucle
+                if (entradaNota === null) {
+                    continuar = 'N';
+                    break;
+                }
+
+                var nota = parseFloat(entradaNota); // Convertir texto a número
+
+                if (isNaN(nota)) {
+                    alert("Error: Ingrese un número válido.");
+                    pantalla.innerText += " > Error de digitación.\n";
+                } else {
+                    // B. LÓGICA DE DECISIÓN (If/Elif/Else del Diagrama 1)
+                    pantalla.innerText += "\nEvaluando nota: " + nota;
+
+                    if (nota >= 7.0) {
+                        alert("Nota: " + nota + "\nResultado: APROBADO");
+                        pantalla.innerText += " -> APROBADO\n";
+                        contador_aprobados = contador_aprobados + 1;
+                    } 
+                    else if (nota >= 5.0) {
+                        alert("Nota: " + nota + "\nResultado: SUPLETORIO");
+                        pantalla.innerText += " -> SUPLETORIO\n";
+                    } 
+                    else {
+                        alert("Nota: " + nota + "\nResultado: REPROBADO");
+                        pantalla.innerText += " -> REPROBADO\n";
+                        contador_reprobados = contador_reprobados + 1;
+                    }
+                }
+
+                // C. PREGUNTA CONTINUAR (Diagrama 2)
+                continuar = prompt("¿Desea evaluar otra nota? (Escriba S para Sí, N para No)");
+                
+                if (continuar == null) continuar = 'N';
+            }
+
+            // 3. SALIDA / RESUMEN FINAL (Diagrama 2)
+            pantalla.innerText += "\n================================\n";
+            pantalla.innerText += "   RESUMEN FINAL DE NOTAS\n";
+            pantalla.innerText += "================================\n";
+            pantalla.innerText += "Total Aprobados:  " + contador_aprobados + "\n";
+            pantalla.innerText += "Total Reprobados: " + contador_reprobados + "\n";
+            pantalla.innerText += "================================\n";
+            pantalla.innerText += "¡FIN DEL PROGRAMA!";
+        }
+    </script>
+</body>
+</html>

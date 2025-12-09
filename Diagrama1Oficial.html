@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Diagrama 1 - Lógica Condicional</title>
+    <style>
+        body { font-family: monospace; background-color: #f4f4f4; padding: 20px; }
+        .consola { background-color: #222; color: #fff; padding: 20px; border-radius: 5px; width: 80%; margin: 0 auto; min-height: 200px; white-space: pre-wrap; font-size: 16px; border: 2px solid #555; }
+        button { padding: 15px 30px; font-size: 18px; cursor: pointer; display: block; margin: 20px auto; background-color: #28a745; color: white; border: none; border-radius: 5px; }
+        button:hover { background-color: #218838; }
+        h2 { text-align: center; color: #333; font-family: Arial, sans-serif; }
+    </style>
+</head>
+<body>
+
+    <h2>Diagrama 1: Lógica Condicional (if / elif / else)</h2>
+
+    <!-- BOTÓN PARA INICIAR -->
+    <button onclick="ejecutarDiagrama1()">▶ EVALUAR UNA NOTA</button>
+    
+    <!-- PANTALLA DE RESULTADOS -->
+    <div class="consola" id="pantalla">
+        > Esperando ingreso de nota...
+        > Haga clic en el botón verde.
+    </div>
+
+    <script>
+        function ejecutarDiagrama1() {
+            var pantalla = document.getElementById("pantalla");
+            pantalla.innerText = ">>> INICIO PROCESO (DIAGRAMA 1) <<<\n";
+
+            // 1. INPUT: INGRESAR NOTA
+            var entrada = prompt("Ingrese la NOTA a evaluar (ej: 8.5):");
+
+            // Validación simple
+            if (entrada === null || entrada === "") {
+                pantalla.innerText += "> Cancelado por el usuario.\n";
+                return;
+            }
+
+            var nota = parseFloat(entrada); // Convertir a decimal
+
+            if (isNaN(nota)) {
+                alert("Error: Ingrese un número válido.");
+                pantalla.innerText += "> Error: Dato no válido.\n";
+            } else {
+                // Muestra la nota ingresada
+                pantalla.innerText += "Nota ingresada: " + nota + "\n";
+                pantalla.innerText += "Analizando...\n";
+
+                // 2. LÓGICA DE DECISIÓN (EL NÚCLEO DEL DIAGRAMA 1)
+                
+                // PRIMERA DECISIÓN (Rombo 1)
+                if (nota >= 7.0) {
+                    // CAMINO DEL SÍ
+                    pantalla.innerText += "--------------------------\n";
+                    pantalla.innerText += "RESULTADO: APROBADO ✅\n";
+                    pantalla.innerText += "--------------------------\n";
+                    alert("RESULTADO: APROBADO");
+                } 
+                // SEGUNDA DECISIÓN (Rombo 2 - Elif)
+                else if (nota >= 5.0) {
+                    // CAMINO DEL SÍ (Entre 5.0 y 6.9)
+                    pantalla.innerText += "--------------------------\n";
+                    pantalla.innerText += "RESULTADO: SUPLETORIO ⚠️\n";
+                    pantalla.innerText += "--------------------------\n";
+                    alert("RESULTADO: SUPLETORIO");
+                } 
+                // CAMINO DEL NO (Else - Menor a 5.0)
+                else {
+                    pantalla.innerText += "--------------------------\n";
+                    pantalla.innerText += "RESULTADO: REPROBADO ❌\n";
+                    pantalla.innerText += "--------------------------\n";
+                    alert("RESULTADO: REPROBADO");
+                }
+            }
+
+            // 3. FIN
+            pantalla.innerText += ">>> FIN DE EVALUACIÓN <<<";
+        }
+    </script>
+</body>
+</html>
