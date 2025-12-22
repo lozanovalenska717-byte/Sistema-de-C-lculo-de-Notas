@@ -1,0 +1,49 @@
+# =========================================================
+# VERSIÓN 2: LÓGICA REPETITIVA (BUCLE WHILE)
+# Objetivo: Procesar múltiples estudiantes y dar reporte final.
+# =========================================================
+
+print("--- INICIO DEL SISTEMA DE GESTIÓN DE NOTAS (V2) ---")
+
+# 1. INICIALIZAR VARIABLES
+#    Contadores a 0 y variable de control 'continuar' en 'S'
+aprobados = 0
+reprobados = 0
+continuar = 'S'
+
+# 2. BUCLE PRINCIPAL
+#    Se ejecuta mientras la variable continuar sea 'S' o 's'
+while continuar.upper() == 'S':
+    
+    print("\n>>> Evaluando nueva nota...")
+    try:
+        # 3. Entrada de la nota
+        nota = float(input("Ingrese la nota del estudiante: "))
+        
+        # --- Lógica de decisión ---
+        # Si es menor a 7.0 es REPROBADO, de lo contrario APROBADO.
+        if nota < 7.0:
+            print(f"    -> Calificación: {nota} [REPROBADO]")
+            reprobados = reprobados + 1
+        else:
+            print(f"    -> Calificación: {nota} [APROBADO]")
+            aprobados = aprobados + 1
+        # --------------------------
+
+    except ValueError:
+        print("    [!] Error: Ingrese un número válido (ej: 7.5). No se contará este intento.")
+
+    # 4. Pregunta de control
+    #    Guardamos la respuesta para evaluar si el bucle se repite
+    continuar = input("\n¿Desea evaluar otro estudiante? (S/N): ")
+
+# 5. REPORTE ESTADÍSTICO ACUMULATIVO
+#    Esto se muestra cuando el usuario rompe el ciclo (presiona 'N')
+print("\n" + "="*35)
+print("      REPORTE FINAL DE NOTAS       ")
+print("="*35)
+print(f"Total procesados : {aprobados + reprobados}")
+print(f"Total Aprobados : {aprobados}")
+print(f"Total Reprobados : {reprobados}")
+print("="*35)
+print("¡FIN DEL PROGRAMA!")

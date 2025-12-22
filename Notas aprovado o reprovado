@@ -1,0 +1,24 @@
+# =========================================================
+# VERSIÓN 1: LÓGICA DE DECISIÓN (ESTRUCTURA CONDICIONAL)
+# Propósito: Evaluar la nota de forma exacta sin errores humanos.
+# =========================================================
+
+print(">>> SISTEMA DE EVALUACIÓN (V1) <<<")
+
+# 1. Entrada de datos
+# Utilizamos float para aceptar decimales (ej: 6.5)
+try:
+    nota = float(input("Por favor, ingrese la nota del estudiante: "))
+
+    # criterio: Menor a 7.0 es REPROBADO, 7.0 o superior es APROBADO.
+    print("-" * 30) # Línea decorativa
+    if nota < 7.0:
+        print(f"La nota es {nota}")
+        print("Resultado: REPROBADO")
+    else:
+        print(f"La nota es {nota}")
+        print("Resultado: APROBADO")
+    print("-" * 30)
+
+except ValueError:
+    print("Error: Por favor ingrese un número válido.")
